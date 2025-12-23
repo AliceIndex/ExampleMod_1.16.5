@@ -13,8 +13,8 @@ apply plugin: 'eclipse'
 apply plugin: 'maven-publish'
 
 version = '1.0'
-group = 'com.yourname.modid' // http://maven.apache.org/guides/mini/guide-naming-conventions.html
-archivesBaseName = 'modid'
+group = 'com.aliceindex.examplemod' // http://maven.apache.org/guides/mini/guide-naming-conventions.html
+archivesBaseName = 'examplemod'
 
 java.toolchain.languageVersion = JavaLanguageVersion.of(8) // Mojang ships Java 8 to end users, so your mod should target Java 8.
 
@@ -41,6 +41,8 @@ minecraft {
     runs {
         client {
             workingDirectory project.file('run')
+
+            jvmArgs '-Xmx1G', '-Xms256M'
 
             // Recommended logging data for a userdev environment
             // The markers can be changed as needed.
@@ -141,6 +143,7 @@ dependencies {
 
 // Example for how to get properties into the manifest for reading by the runtime..
 jar {
+    compileJava { options.encoding = 'UTF-8' }
     manifest {
         attributes([
             "Specification-Title": "examplemod",
