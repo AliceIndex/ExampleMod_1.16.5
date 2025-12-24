@@ -1,44 +1,48 @@
-# This workflow uses actions that are not certified by GitHub.
-# They are provided by a third-party and are governed by
-# separate terms of service, privacy policy, and support
-# documentation.
-# This workflow will build a package using Gradle and then publish it to GitHub packages when a release is created
-# For more information see: https://github.com/actions/setup-java/blob/main/docs/advanced-usage.md#Publishing-using-gradle
-
-name: Gradle Package
+name: Build Forge Mod 1.16.5
 
 on:
-  release:
-    types: [created]
+  # main (または master) にpushした時と、PRが出た時に実行
+  push:
+    branches: [ "main", "master" ]
+  pull_request:
+    branches: [ "main", "master" ]
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
-    permissions:
-      contents: read
-      packages: write
 
     steps:
-    - uses: actions/checkout@v4
-    - name: Set up JDK 17
-      uses: actions/setup-java@v4
-      with:
-        java-version: '17'
-        distribution: 'temurin'
-        server-id: github # Value of the distributionManagement/repository/id field of the pom.xml
-        settings-path: ${{ github.workspace }} # location for the settings.xml file
+      # 1. リポジトリのコードをチェックアウト
+      - name: Checkout repository
+        uses: actions/checkout@v4
 
-    - name: Setup Gradle
-      uses: gradle/actions/setup-gradle@af1da67850ed9a4cedd57bfd976089dd991e2582 # v4.0.0
+      # 2. Java 8 (1.16.5用) のセットアップ
+      - name: Set up JDK 8
+        uses: actions/setup-java@v4
+        with:
+          java-version: '8'
+          distribution: 'temurin'
 
-    - name: Build with Gradle
-      run: ./gradlew build
+      # 3. Gradleのセットアップ（キャッシュも自動でやってくれます）
+      - name: Setup Gradle
+        uses: gradle/actions/setup-gradle@v4
 
-    # The USERNAME and TOKEN need to correspond to the credentials environment variables used in
-    # the publishing section of your build.gradle
-    - name: Publish to GitHub Packages
-      run: ./gradlew publish
-      env:
-        USERNAME: ${{ github.actor }}
-        TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      # 4. gradlewに実行権限を付与 (Linux環境で必須)
+      - name: Grant execute permission for gradlew
+        run: chmod +x gradlew
+
+      # 5. ビルド実行
+      # data生成などは含めず、純粋なビルドのみ行います
+      - name: Build with Gradle
+        run: ./gradlew build
+
+      # 6. 完成したjarファイルをアーティファクトとしてアップロード
+      # GitHub Actionsの画面からダウンロードできるようになります
+      - name: Upload Mod Jar
+        uses: actions/upload-artifact@v4
+        with:
+          name: mod-artifacts
+          # ビルド成果物がある場所（sources.jarなども含む）
+          path: build/libs/*.jar
+          # 保持期間（任意）
+          retention-days: 5
