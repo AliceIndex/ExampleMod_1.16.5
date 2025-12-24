@@ -1,0 +1,48 @@
+name: Publish Release
+
+on:
+  push:
+    tags:
+      - "v*"  # "v1.0", "v0.0.1" などのタグが付いた時だけ動く
+
+permissions:
+  contents: write  # Releaseを作成・アップロードする権限
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1. チェックアウト
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # 2. Java 8 セットアップ
+      - name: Set up JDK 8
+        uses: actions/setup-java@v4
+        with:
+          java-version: '8'
+          distribution: 'temurin'
+
+      # 3. Gradleセットアップ
+      - name: Setup Gradle
+        uses: gradle/actions/setup-gradle@v4
+
+      # 4. 実行権限付与
+      - name: Grant execute permission for gradlew
+        run: chmod +x gradlew
+
+      # 5. ビルド実行
+      - name: Build with Gradle
+        run: ./gradlew build
+
+      # 6. Releaseを作成してjarをアップロード
+      - name: Create Release
+        uses: softprops/action-gh-release@v2
+        with:
+          # build/libs/ 以下の .jar ファイルをすべてアップロード
+          # (通常は mod本体 と sources の2つが含まれます)
+          files: build/libs/*.jar
+
+          # Releaseの本文を自動生成（コミットログから）するかどうか
+          generate_release_notes: true
