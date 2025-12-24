@@ -29,9 +29,19 @@ public class ExampleModBlockStateProvider extends BlockStateProvider {
     }
 
     private void slabBlockWithItem(SlabBlock block, ResourceLocation texture) {
-        slabBlock(block, texture, texture);
         String baseName = Objects.requireNonNull(block.getRegistryName()).getPath();
-        ModelFile bottomModel = new ModelFile.UncheckedModelFile(modLoc("block/" + baseName));
+
+        // 下付き (Bottom)
+        ModelFile bottomModel = models().slab(baseName, texture, texture, texture);
+        // 上付き (Top)
+        ModelFile topModel = models().slabTop(baseName + "_top", texture, texture, texture);
+        // 2段重ね (Double) - ここで cubeAll を使うので確実にフルブロックになります
+        ModelFile doubleModel = models().cubeAll(baseName + "_double", texture);
+
+        // 2. BlockStateの登録
+        // さっき作った3つのモデルを、引数として「これを使え！」と渡します
+        // 引数の順序: (block, bottom, top, double)
+        slabBlock(block, bottomModel, topModel, doubleModel);
         simpleBlockItem(block, bottomModel);
     }
 }

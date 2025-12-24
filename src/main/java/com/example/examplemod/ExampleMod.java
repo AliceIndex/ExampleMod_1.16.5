@@ -76,6 +76,7 @@ public class ExampleMod
 
         public static final RegistryObject<SlabBlock> TEST_TILE_BLOCK = BLOCKS.register("test_tile_block", () -> new TestTileBlock(AbstractBlock.Properties
                 .of(Material.METAL, MaterialColor.METAL)
+                .noOcclusion()
                 .requiresCorrectToolForDrops()
                 .strength(5.0F, 6.0F)
                 .sound(SoundType.METAL)
