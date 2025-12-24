@@ -23,6 +23,6 @@ public class ExampleModRecipeProvider extends RecipeProvider {
                 .requires(ExampleMod.Blocks.TEST_BLOCK.get())
                 .group("test_item")
                 .unlockedBy("has_test_block", has(ExampleMod.Blocks.TEST_BLOCK.get()))
-                .save(consumer, "ExampleMod:test_item_from_test_block");
+                .save(consumer, "examplemod:test_item_from_test_block");
     }
 }

@@ -11,6 +11,7 @@ public class ExampleModJaJpLanguageProvider extends LanguageProvider {
     @Override
     protected void addTranslations() {
         add(ExampleMod.Blocks.TEST_BLOCK.get(), "テストブロック");
+        add(ExampleMod.Blocks.TEST_TILE_BLOCK.get(), "テストタイルブロック");
         add(ExampleMod.Items.TEST_ITEM.get(), "テストアイテム");
     }
 }

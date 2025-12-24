@@ -47,6 +47,7 @@ public class ExampleModLootTableProvider extends LootTableProvider {
         @Override
         protected void addTables() {
             dropSelf(ExampleMod.Blocks.TEST_BLOCK.get());
+            dropSelf(ExampleMod.Blocks.TEST_TILE_BLOCK.get());
         }
     }
 }

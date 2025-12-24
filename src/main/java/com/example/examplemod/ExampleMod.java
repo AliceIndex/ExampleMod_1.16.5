@@ -1,9 +1,6 @@
 package com.example.examplemod;
 
-import net.minecraft.block.AbstractBlock;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.SoundType;
+import net.minecraft.block.*;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.material.MaterialColor;
 import net.minecraft.data.DataGenerator;
@@ -77,7 +74,7 @@ public class ExampleMod
                 .harvestLevel(1)
         ));
 
-        public static final RegistryObject<Block> TEST_TILE_BLOCK = BLOCKS.register("test_tile_block", () -> new TestTileBlock(AbstractBlock.Properties
+        public static final RegistryObject<SlabBlock> TEST_TILE_BLOCK = BLOCKS.register("test_tile_block", () -> new TestTileBlock(AbstractBlock.Properties
                 .of(Material.METAL, MaterialColor.METAL)
                 .requiresCorrectToolForDrops()
                 .strength(5.0F, 6.0F)
@@ -98,7 +95,8 @@ public class ExampleMod
         private static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, MOD_ID);
         public static final RegistryObject<Item> TEST_BLOCK = ITEMS.register("test_block", () -> new BlockItem(Blocks.TEST_BLOCK.get(), new Item.Properties()
                 .tab(TEST_TAB)));
-        public static final RegistryObject<Item> TEST_TILE_BLOCK = ITEMS.register("test_tile_block", () -> new BlockItem(Blocks.TEST_TILE_BLOCK.get(), new Item.Properties()));
+        public static final RegistryObject<Item> TEST_TILE_BLOCK = ITEMS.register("test_tile_block", () -> new BlockItem(Blocks.TEST_TILE_BLOCK.get(), new Item.Properties()
+                .tab(TEST_TAB)));
         public static final RegistryObject<Item> TEST_ITEM = ITEMS.register("test_item",() -> new Item(new Item.Properties()
                 .tab(TEST_TAB)));
 
@@ -118,7 +116,7 @@ public class ExampleMod
         }
     }
 
-    public static class TestTileBlock extends Block {
+    public static class TestTileBlock extends SlabBlock {
         protected static final VoxelShape SHAPE = Block.box(0.0D, 0.0D, 0.0D, 16.0D, 8.0D, 16.0D);
 
         public TestTileBlock(Properties properties) {

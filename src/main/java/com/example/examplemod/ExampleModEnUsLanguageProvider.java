@@ -12,6 +12,7 @@ public class ExampleModEnUsLanguageProvider extends LanguageProvider {
     protected void addTranslations() {
         add("itemGroup.examplemod", "Example Mod");
         add(ExampleMod.Blocks.TEST_BLOCK.get(), "Test Block");
+        add(ExampleMod.Items.TEST_TILE_BLOCK.get(), "Test Tile Block");
         add(ExampleMod.Items.TEST_ITEM.get(), "Test Item");
     }
 }
