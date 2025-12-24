@@ -4,8 +4,23 @@ on:
   # main (または master) にpushした時と、PRが出た時に実行
   push:
     branches: [ "main", "master" ]
+    # ▼ ここを追加
+    paths:
+      - 'src/**'              # Javaコード、JSON、画像など
+      - 'build.gradle'        # 依存関係やビルド設定
+      - 'gradle.properties'   # Modのバージョン番号など
+      - 'settings.gradle'     # プロジェクト設定
+      - 'gradle/**'           # Gradleラッパー自体の更新
+
   pull_request:
     branches: [ "main", "master" ]
+    # ▼ ここも同じように追加
+    paths:
+      - 'src/**'
+      - 'build.gradle'
+      - 'gradle.properties'
+      - 'settings.gradle'
+      - 'gradle/**'
 
 jobs:
   build:
