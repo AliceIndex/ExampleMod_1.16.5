@@ -5,10 +5,6 @@
 ![Forge](https://img.shields.io/badge/Forge-1.16.5-orange)
 ![License](https://img.shields.io/badge/License-MIT-blue)
 
-[**🇯🇵 日本語の説明はこちら (Go to Japanese Description)**](#example-mod---%E6%97%A5%E6%9C%AC%E8%AA%9E)
-
----
-
 **Example Mod** is a project aimed at learning and experimenting with Mod development techniques in the Minecraft 1.16.5 (Forge) environment.
 It comprehensively implements and verifies elements necessary for modding, ranging from adding custom blocks and models to controlling TileEntity (BlockEntity) behaviors.
 
