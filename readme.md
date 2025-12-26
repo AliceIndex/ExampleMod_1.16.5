@@ -45,7 +45,7 @@ Safety against world data corruption or conflicts is not guaranteed. Therefore, 
 This project is released under the **MIT License**.
 You are free to view, modify, and use the source code for learning purposes.
 
-See [LICENSE](LICENSE) file for details.
+See [LICENSE](LICENSE.md) file for details.
 
 ## Author
 
@@ -97,7 +97,7 @@ See [LICENSE](LICENSE) file for details.
 このプロジェクトは **MIT License** の下で公開されています。
 ソースコードの閲覧、改造、学習目的での利用は自由に行っていただけます。
 
-詳細は [LICENSE](LICENSE) ファイルをご確認ください。
+詳細は [LICENSE](LICENSE.md) ファイルをご確認ください。
 
 ## 作者 (Author)
 
