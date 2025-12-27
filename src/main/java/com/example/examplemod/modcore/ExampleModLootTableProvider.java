@@ -1,6 +1,6 @@
 package com.example.examplemod.modcore;
 
-import com.example.examplemod.ExampleMod;
+import com.example.examplemod.modcore.init.BlockInit;
 import com.google.common.collect.ImmutableList;
 import com.mojang.datafixers.util.Pair;
 import mcp.MethodsReturnNonnullByDefault;
@@ -41,14 +41,16 @@ public class ExampleModLootTableProvider extends LootTableProvider {
 
     private static class TitaniumModBlockLootTables extends BlockLootTables {
         @Override
-        protected Iterable<Block> getKnownBlocks() {
-            return ExampleMod.Blocks.getEntries().stream().map(RegistryObject::get).collect(Collectors.toList());
+        protected Iterable<Block> getKnownBlocks() {// ★ここを変更：BlockInitに登録されている全てのブロックを対象にする
+            return BlockInit.BLOCKS.getEntries().stream()
+                    .map(RegistryObject::get)
+                    .collect(Collectors.toList());
         }
 
         @Override
-        protected void addTables() {
-            dropSelf(ExampleMod.Blocks.TEST_BLOCK.get());
-            dropSelf(ExampleMod.Blocks.TEST_TILE_BLOCK.get());
+        protected void addTables() {// 個別の設定
+            dropSelf(BlockInit.TEST_BLOCK.get());
+            dropSelf(BlockInit.TEST_TILE_BLOCK.get());
         }
     }
 }

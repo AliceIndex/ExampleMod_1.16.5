@@ -1,6 +1,6 @@
 package com.example.examplemod.modcore;
 
-import com.example.examplemod.ExampleMod;
+import com.example.examplemod.modcore.init.ItemInit;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.item.Item;
 import net.minecraft.util.ResourceLocation;
@@ -16,7 +16,7 @@ public class ExampleModItemModelProvider extends ItemModelProvider {
 
     @Override
     protected void registerModels() {
-        simpleItem(ExampleMod.Items.TEST_ITEM.get());
+        simpleItem(ItemInit.TEST_ITEM.get());
     }
 
     private void simpleItem(Item item) {
