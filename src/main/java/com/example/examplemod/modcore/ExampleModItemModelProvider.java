@@ -1,5 +1,6 @@
-package com.example.examplemod;
+package com.example.examplemod.modcore;
 
+import com.example.examplemod.ExampleMod;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.item.Item;
 import net.minecraft.util.ResourceLocation;

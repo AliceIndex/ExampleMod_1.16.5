@@ -1,9 +1,9 @@
-package com.example.examplemod;
+package com.example.examplemod.modcore;
 
+import com.example.examplemod.ExampleMod;
 import net.minecraft.block.Block;
 import net.minecraft.block.SlabBlock;
 import net.minecraft.data.DataGenerator;
-import net.minecraft.data.TexturedModel;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.model.generators.BlockStateProvider;
 import net.minecraftforge.client.model.generators.ModelFile;

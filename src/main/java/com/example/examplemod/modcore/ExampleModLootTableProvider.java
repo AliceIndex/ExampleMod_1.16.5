@@ -1,5 +1,6 @@
-package com.example.examplemod;
+package com.example.examplemod.modcore;
 
+import com.example.examplemod.ExampleMod;
 import com.google.common.collect.ImmutableList;
 import com.mojang.datafixers.util.Pair;
 import mcp.MethodsReturnNonnullByDefault;

@@ -1,5 +1,6 @@
 package com.example.examplemod;
 
+import com.example.examplemod.modcore.*;
 import net.minecraft.block.*;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.material.MaterialColor;
