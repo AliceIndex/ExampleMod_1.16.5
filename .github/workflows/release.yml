@@ -13,6 +13,11 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      # 0. バージョン取得
+      - name: Get version name
+        run: |
+          echo "TAG=${{ github.ref_name }}" >> "$GITHUB_ENV"
+
       # 1. チェックアウト
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -36,7 +41,11 @@ jobs:
       - name: Build with Gradle
         run: ./gradlew build
 
-      # 6. Releaseを作成してjarをアップロード
+      # 6. ファイル名の変更
+      - name: Rename jar
+        run: mv build/libs/*.jar build/libs/ExampleMod_1.16.5_"$TAG".jar
+
+      # 7. Releaseを作成してjarをアップロード
       - name: Create Release
         uses: softprops/action-gh-release@v2
         with:
