@@ -1,5 +1,6 @@
 {
   "block.examplemod.test_block": "\u30C6\u30B9\u30C8\u30D6\u30ED\u30C3\u30AF",
   "block.examplemod.test_tile_block": "\u30C6\u30B9\u30C8\u30BF\u30A4\u30EB\u30D6\u30ED\u30C3\u30AF",
-  "item.examplemod.test_item": "\u30C6\u30B9\u30C8\u30A2\u30A4\u30C6\u30E0"
+  "item.examplemod.test_item": "\u30C6\u30B9\u30C8\u30A2\u30A4\u30C6\u30E0",
+  "itemGroup.examplemod": "Example Mod"
 }

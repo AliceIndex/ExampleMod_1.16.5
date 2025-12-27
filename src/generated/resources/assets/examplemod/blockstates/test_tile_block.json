@@ -1,13 +1,7 @@
 {
   "variants": {
-    "type=top": {
-      "model": "examplemod:block/test_tile_block_top"
-    },
-    "type=bottom": {
+    "": {
       "model": "examplemod:block/test_tile_block"
-    },
-    "type=double": {
-      "model": "examplemod:block/test_tile_block_double"
     }
   }
 }

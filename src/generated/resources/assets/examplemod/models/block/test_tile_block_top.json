@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/slab_top",
-  "textures": {
-    "side": "examplemod:block/test_tile_block",
-    "bottom": "examplemod:block/test_tile_block",
-    "top": "examplemod:block/test_tile_block"
-  }
-}
