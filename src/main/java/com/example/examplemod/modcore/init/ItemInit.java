@@ -8,34 +8,48 @@ import net.minecraft.item.ItemGroup;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import net.minecraftforge.registries.DeferredRegister;
+import net.minecraftforge.registries.ForgeRegistries;
 
 import java.util.Objects;
 
 @Mod.EventBusSubscriber(modid = ExampleMod.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class ItemInit {
+    // 1. アイテム登録用の台帳を作成
+    public static final DeferredRegister<Item> ITEMS =
+            DeferredRegister.create(ForgeRegistries.ITEMS, ExampleMod.MOD_ID);
 
-    // ★ここが自動化の肝！
-    // "Blockの登録が終わったタイミング" でこの処理が走り、
-    // BlockInitに登録されている全てのブロックに対して、自動でItemBlockを生成して登録します。
+    // 2. 普通のアイテム（ブロックじゃないやつ）はここで登録
+    public static final RegistryObject<Item> TEST_ITEM = ITEMS.register("test_item",
+            () -> new Item(new Item.Properties().tab(ExampleMod.TEST_TAB)));
+
+
+    // 3. ★自動登録システム★
+    // BlockInitに登録されたブロックをすべてチェックして、自動的にアイテム版(BlockItem)を登録します
     @SubscribeEvent
     public static void registerBlockItems(final RegistryEvent.Register<Item> event) {
-        // 登録されている全てのブロックをループ処理
+        // 登録されている全ブロックをループ
         BlockInit.BLOCKS.getEntries().forEach(blockRegistryObject -> {
+            Block block = blockRegistryObject.get(); // ブロック本体
+            ResourceLocation registryName = block.getRegistryName(); // ブロックの名前 (例: test_block)
 
-            // ブロック本体を取得
-            Block block = blockRegistryObject.get();
-            // ブロックのID名（例: examplemod:test_tile_block）を取得
-            ResourceLocation registryName = block.getRegistryName();
+            // アイテムの設定 (タブなどを指定)
+            Item.Properties properties = new Item.Properties().tab(ExampleMod.TEST_TAB);
 
-            // アイテムの設定（タブなど）
-            Item.Properties properties = new Item.Properties().tab(ItemGroup.TAB_MISC);
+            // BlockItemを作成して、ブロックと同じ名前で登録！
+            // setRegistryNameで名前をセットしないとエラーになるので注意
+            BlockItem blockItem = new BlockItem(block, properties);
+            blockItem.setRegistryName(Objects.requireNonNull(registryName));
 
-            // BlockItemを作成して登録！
-            // 名前はブロックと同じものを自動で使うので被りなし
-            event.getRegistry().register(
-                    new BlockItem(block, properties).setRegistryName(Objects.requireNonNull(registryName))
-            );
+            event.getRegistry().register(blockItem);
         });
+    }
+
+    // 4. Mainクラスから呼び出すためのメソッド
+    public static void register() {
+        ITEMS.register(FMLJavaModLoadingContext.get().getModEventBus());
     }
 }

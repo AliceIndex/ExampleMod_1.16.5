@@ -21,7 +21,7 @@ public class BlockInit {
     // ★ここに新しいブロックを1行ずつ追加していくだけ！
     // "block_name", ブロックのクラス::new
     public static final RegistryObject<Block> TEST_BLOCK = BLOCKS.register("test_block", TestBlock::new);
-    public static final RegistryObject<SlabBlock> TEST_TILE_BLOCK = BLOCKS.register("test_tile_block", TestTileBlock::new);
+    public static final RegistryObject<Block> TEST_TILE_BLOCK = BLOCKS.register("test_tile_block", TestTileBlock::new);
 
 
 
