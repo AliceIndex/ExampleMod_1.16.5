@@ -4,7 +4,6 @@ import com.example.examplemod.ExampleMod;
 import net.minecraft.block.Block;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemGroup;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -18,9 +17,10 @@ import java.util.Objects;
 
 @Mod.EventBusSubscriber(modid = ExampleMod.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class ItemInit {
-    // 1. アイテム登録用の台帳を作成
+
+    // ブロックを登録するための「箱」を作る
     public static final DeferredRegister<Item> ITEMS =
-            DeferredRegister.create(ForgeRegistries.ITEMS, ExampleMod.MOD_ID);
+            DeferredRegister.create(ForgeRegistries.ITEMS,ExampleMod.MOD_ID);
 
     // 2. 普通のアイテム（ブロックじゃないやつ）はここで登録
     public static final RegistryObject<Item> TEST_ITEM = ITEMS.register("test_item",

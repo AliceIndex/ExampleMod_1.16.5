@@ -7,6 +7,7 @@ import net.minecraft.block.material.MaterialColor;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.shapes.ISelectionContext;
 import net.minecraft.util.math.shapes.VoxelShape;
+import net.minecraft.util.math.shapes.VoxelShapeArray;
 import net.minecraft.util.math.shapes.VoxelShapes;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.tileentity.TileEntity;
@@ -34,7 +35,8 @@ public class TestTileBlock extends Block {
     // ここで VoxelShapes.empty() を返すと、当たり判定がなくなって通り抜けられるようになります。
     @Override
     public VoxelShape getCollisionShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context) {
-        return VoxelShapes.empty();
+        //return VoxelShapes.empty();
+        return Block.box(0.0F,16.0F,0.0F,16.0F,32.0F,16.0F);
     }
 
     // ※補足：getShape（視線を合わせたときの黒い枠線）はデフォルト（フルブロック）のまま残ります。

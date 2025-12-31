@@ -4,7 +4,6 @@ import com.example.examplemod.ExampleMod;
 import com.example.examplemod.common.blocks.TestBlock;
 import com.example.examplemod.common.blocks.TestTileBlock;
 import net.minecraft.block.Block;
-import net.minecraft.block.SlabBlock;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;

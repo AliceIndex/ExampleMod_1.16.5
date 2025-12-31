@@ -23,10 +23,7 @@ public class TestTileEntity extends TileEntity implements ITickableTileEntity {
     @Override
     public void tick() {
         if (level != null && !level.isClientSide) {
-            counter++;
-            if (counter % 20 == 0) {
-                // System.out.println("TileEntity is working! Count: " + counter);
-            }
+
         }
     }
 
